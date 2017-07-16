@@ -10,5 +10,8 @@ module.exports = {
 		loaders: [
 			{test: /\.css$/, loader: 'style-loader!css-loader'}
 		]
-	}
+	},
+	plugins: [
+		new webpack.BannerPlugin('This is a created by Dom.')
+	]
 }

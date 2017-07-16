@@ -1,3 +1,4 @@
+/*! This is a created by Dom. */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
