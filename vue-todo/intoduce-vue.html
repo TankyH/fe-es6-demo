@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>介绍 Vue</title>
+<script src="https://cdn.bootcss.com/vue/2.4.2/vue.min.js"></script>
+<script type="text/javascript">
+</script>
+</head>
+<body>
+	<div id="app">
+	  <p>{{ message }}</p>
+	</div>
+
+	<div id="app-2">
+		<span v-bind:title="message">
+			mouse hover...
+		</span>
+	</div>
+
+	<div id="app-3">
+		<p v-if="seen">now, u see me</p>
+	</div>
+
+	<div id="app-4">
+		<p>春晚运维保障 checklist :</p>
+		<ol>
+			<li v-for="todo in todos">
+				{{ todo.text }}
+			</li>
+		</ol>
+	</div>
+
+	<div id="app-5">
+		<p>{{ message }}</p>
+		<button v-on:click="reverseMessage">Reverse</button>
+	</div>
+
+	<div id="app-6">
+		<p>{{ message }}</p>
+		<input v-model="message">
+	</div>
+
+	<div id="app-7">
+		<ol>
+			<todo-item
+				v-for="item in groceryList"
+				v-bind:todo="item"
+				v-bind:key="item.id"
+			>
+			</todo-item>
+		</ol>
+	</div>
+		
+<script>
+var app = new Vue({
+  el: '#app',
+  data: {
+    message: 'Hello Vue.js!'
+  }
+});
+
+var app2 = new Vue({
+  el: '#app-2',
+  data: {
+    message: 'mouse hover at ' + new Date().toLocaleString()
+  }
+});
+
+var app3 = new Vue({
+	el: '#app-3',
+	data: {
+		seen: true
+	}
+});
+
+var app4 = new Vue({
+	el: "#app-4",
+	data: {
+		todos: [
+			{text: "加机器"},
+			{text: "配置veryngnix"},
+			{text: "压测"}
+		]
+	}
+});
+
+var app5 = new Vue({
+	el: "#app-5",
+	data: {
+		message: "春晚又得保障啦~"
+	},
+	methods: {
+		reverseMessage: function () {
+			this.message = this.message.split("").reverse().join("")
+		}
+	}
+});
+
+var app6 = new Vue({
+	el: "#app-6",
+	data: {
+		message: "保障过夜没加班费, 也不会有什么奖励的~"
+	}
+});
+	
+Vue.component('todo-item', {
+	props: ['todo'],
+	template: '<li>{{ todo.text }}</li>'
+});
+
+var app7 = new Vue({
+	el: '#app-7',
+	data: {
+		groceryList: [
+			{ id: 0, text: '蔬菜'},
+			{ id: 1, text: '水果'},
+			{ id: 2, text: '随便吃'},
+		]
+	}
+});
+
+var app8 = new Vue({
+	el: '#app-8',
+	data: {
+
+	}
+})
+</script>
+</body>
+</html>

@@ -112,7 +112,7 @@ exports = module.exports = __webpack_require__(3)(undefined);
 
 
 // module
-exports.push([module.i, "body {background: yellow; }", ""]);
+exports.push([module.i, "body {background: yellow; }\ndiv {padding: 0; margin: 0;}", ""]);
 
 // exports
 
