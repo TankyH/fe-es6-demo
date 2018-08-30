@@ -93,6 +93,7 @@
 		console.log(temp);
 	}
 </script>
+we
 <script type="text/javascript">
 	console.log('-----');
 	console.log('TDZ 也意味着 typeof 不再是 100% 安全的操作')
@@ -104,10 +105,76 @@
 </script>
 
 <script type="text/javascript">
-	console.log('')
+	console.log("隐蔽的'死区'")
+	function foo(x = 2, y = x) {
+		return [x, y]
+	}
+	foo(); // 正常
+
 	function bar(x = y, y = 2) {
 		return [x, y];
 	}
-
+	bar();
+</script>
+<script type="text/javascript">
+	console.log('----');
+	var z = z; // 正常
+	let y = y; // 报错
+</script>
+<script type="text/javascript">
+	console.log('不允许重复声明');
+	function func() {
+		let a = 10;
+		var a = 1;
+	}
+	func();
+</script>
+<script type="text/javascript">
+	console.log('----');
+	function func() {
+		let a = 10;
+		let a = 1;
+	}
+	func();
+</script>
+<script type="text/javascript">
+	console.log('----');
+	function func(args) {
+		let args;
+	}
+	func();
+</script>
+<script type="text/javascript">
+	console.log('----');
+	function func(args) {
+		{
+			let args;
+		}
+	}
+	func(); // 正常
+</script>
+<script type="text/javascript">
+	console.log('----');
+	console.log('if代码块的外部使用外层的tmp变量，内部使用内层的tmp变量。但是，函数f执行后，输出结果为undefined，原因在于变量提升，导致内层的tmp变量覆盖了外层的tmp变量。')
+	var tmp = new Date();
+	function f() {
+		console.log(tmp);
+		if (false) {
+			var tmp = 'hello world';
+		}
+	}
+	f(); //undefined
+</script>
+<script type="text/javascript">
+	console.log('----');
+	var s = 'hello';
+	for (var i = 0; i < s.length; i++) {
+		console.log(s[i]);
+	}
+	console.log(i); //5
+</script>
+<script type="text/javascript">
+	console.log('----');
+	console.log('块级作用域');
 </script>
 </html>
